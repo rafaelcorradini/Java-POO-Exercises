@@ -4,19 +4,22 @@
 * 
 * @author Rafael Corradini da Cunha (9424322)
 */
-public class ContaBancaria {
+public abstract class ContaBancaria {
 	protected String nome;
 	protected double saldo;
 	protected int numero;
+	static int numAtual = 0;
+	
+	public abstract double atualizaSaldo(double taxaRendimento);
 	
 	/**
 	* Construtor, inicializa os atributos da conta: nome e número da conta.
 	* @param nome Nome do proprietário da conta.
-	* @param numero Número da Conta.
 	*/
-	public ContaBancaria(String nome, int numero) {
+	public ContaBancaria(String nome) {
 		this.nome = nome;
-		this.numero = numero;
+		this.numero = ContaBancaria.numAtual;
+		ContaBancaria.numAtual++;
 	}
 	
 	/**

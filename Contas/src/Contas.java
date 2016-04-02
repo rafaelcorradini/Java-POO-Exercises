@@ -17,9 +17,9 @@ public class Contas {
 	}
 
 	public static void main(String[] args) throws IOException {
-		int opt = 0, c = 0, dia, tipo = 0, num = 0;
+		int opt = 0, c = 0, dia, tipo = 0;
 		String print, nome;
-		double d;
+		double d, taxa;
 		LinkedList<ContaBancaria> contas = new LinkedList<ContaBancaria>();
 		
 		while(true) {
@@ -36,8 +36,8 @@ public class Contas {
 			
 			
 			switch(opt) {
-				case 1: System.out.print("Tipo da Conta(1 - para poupança ou 2 - para especial): ");
-						tipo = EntradaTeclado.leInt(1,2);
+				case 1: System.out.print("Tipo da Conta(1 - para poupança ouro, 2 - para especial e 3 - para poupança simples): ");
+						tipo = EntradaTeclado.leInt(1,3);
 						
 						
 						System.out.println("Insira os dados da nova conta: ");
@@ -49,13 +49,17 @@ public class Contas {
 							System.out.print("Dia do rendimento: ");
 							dia = EntradaTeclado.leInt(1,31);
 		
-							contas.add(num, new ContaPoupanca(nome, num, dia));
+							contas.add(ContaBancaria.numAtual, new PoupancaOuro(nome, dia));
 						} else if(tipo == 2) {
 							System.out.print("Limite: ");
 							d = EntradaTeclado.leDouble();
-							contas.add(num, new ContaEspecial(nome, num, d));
+							contas.add(ContaBancaria.numAtual, new ContaEspecial(nome, d));
+						} else if(tipo == 3) {
+							System.out.print("Dia do rendimento: ");
+							dia = EntradaTeclado.leInt(1,31);
+							
+							contas.add(ContaBancaria.numAtual, new PoupancaSimples(nome, dia));
 						} 
-						num++;
 						break;
 						
 				case 2: printContas(contas);
@@ -82,12 +86,15 @@ public class Contas {
 						contas.get(c).deposita(d);
 						break;
 						
-				case 4: System.out.print("Dia: ");
+				case 4: System.out.println("Dia: ");
 						dia = EntradaTeclado.leInt();
+						System.out.println("Taxa de rendimento: ");
+						taxa = EntradaTeclado.leDouble();
+						
 						for(ContaBancaria conta: contas) {
 							try {
 								if(((ContaPoupanca) conta).getVencimento() == dia)
-									((ContaPoupanca) conta).atualizaSaldo(0.1);	
+									conta.atualizaSaldo(taxa);	
 							} catch (ClassCastException e) {
 								
 							}							

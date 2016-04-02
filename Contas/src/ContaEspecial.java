@@ -8,13 +8,12 @@ public class ContaEspecial extends ContaBancaria {
 	private double limite;
 	
 	/**
-	* Construtor, inicializa os atributos da conta: nome, número e dia de rendimento da conta.
+	* Construtor, inicializa os atributos da conta: nome e dia de rendimento da conta.
 	* @param nome Nome do proprietário da conta.
-	* @param numero Número da conta.
 	* @param limite Limite devedor da Conta.
 	*/
-	public ContaEspecial(String nome, int numero, double limite) {
-		super(nome, numero);
+	public ContaEspecial(String nome, double limite) {
+		super(nome);
 		this.limite = limite;
 	}
 	
@@ -58,5 +57,11 @@ public class ContaEspecial extends ContaBancaria {
 		str = "\nConta: "+ numero +" - Nome: "+ nome + " - Limite devedor: " +limite;
 		return str;
 		
+	}
+
+	@Override
+	public double atualizaSaldo(double taxaRendimento) {
+		// TODO Auto-generated method stub
+		return getSaldo();
 	}
 }
