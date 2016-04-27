@@ -1,20 +1,19 @@
 /**
-* Classe que herda os métodos da classe ContaBancaria, criada para representar a conta poupança de uma pessoa, e guardar informações como:
-* Nome do proprietário da conta, número, saldo e dia de rendimento da conta. 
+* Classe abstrata que herda os métodos da classe ContaBancaria, criada para representar a conta poupança de uma pessoa.
 * 
 * @author Rafael Corradini da Cunha (9424322)
 */
-public class ContaPoupanca extends ContaBancaria {
+public abstract class ContaPoupanca extends ContaBancaria {
 	private int vencimento;
 	
+	
 	/**
-	* Construtor, inicializa os atributos da conta: nome, número e dia de rendimento da conta.
+	* Construtor, inicializa os atributos da conta: nome e dia de rendimento da conta.
 	* @param nome Nome do proprietário da conta.
-	* @param numero Número da conta.
 	* @param dia Dia de rendimento da Conta.
 	*/
-	public ContaPoupanca(String nome, int numero, int dia) {
-		super(nome, numero);
+	public ContaPoupanca(String nome, int dia) {
+		super(nome);
 		vencimento = dia;
 	}
 	
@@ -38,6 +37,7 @@ public class ContaPoupanca extends ContaBancaria {
 	* Atualiza o saldo da conta, calculando o rendimento.
 	* @return Retorna o saldo da conta após o calculo de rendimento.
 	*/
+	@Override
 	public double atualizaSaldo(double taxaRendimento) {
 		saldo = saldo+(saldo*taxaRendimento);
 		return saldo;

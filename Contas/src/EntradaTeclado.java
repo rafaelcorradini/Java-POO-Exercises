@@ -16,7 +16,8 @@ import java.io.InputStreamReader;
 public class EntradaTeclado {
 static InputStreamReader isr = new InputStreamReader(System.in);
 static BufferedReader br = new BufferedReader(isr);
-	
+
+
 	/**
 	 * Le um string digitado pelo teclado, até que seja pressionado
 	 * um enter. Ou seja, le a linha toda.
