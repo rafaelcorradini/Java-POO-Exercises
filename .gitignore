@@ -1,4 +1,8 @@
-*/src/*.classpath 
-*/src/*.project 
-*/src/*.settings
+.classpath
+.project
+.settings
+.idea
+.metadata
+*.iml
+*.ipr
 */bin
